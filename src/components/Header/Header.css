@@ -1,0 +1,29 @@
+header {
+  height: 55px;
+  background-color: darkorange;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  color: #333;
+}
+
+nav ul li {
+  display: inline-block;
+  padding: 1rem;
+}
+
+a {
+  margin: 1rem;
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  border-bottom: 1px dashed white;
+}
+
+.active {
+  color: purple;
+  border-bottom: 1px dashed white;
+}

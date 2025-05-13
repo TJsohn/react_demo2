@@ -1,0 +1,130 @@
+{
+  "books": [
+    {
+      "title": "The Architecture of Happiness",
+      "author": "Alain de Botton",
+      "genre": "Self-help",
+      "inStock": true,
+      "isFavorite": false,
+      "price": 18,
+      "id": "1"
+    },
+    {
+      "title": "Vegetarian",
+      "author": "Han Kang",
+      "genre": "Novel",
+      "inStock": false,
+      "isFavorite": false,
+      "price": 23,
+      "id": "2"
+    },
+    {
+      "id": "3",
+      "title": "What I Talk about when I Talk about Running",
+      "author": "Haruki Murakami",
+      "price": 14,
+      "inStock": false,
+      "isFavorite": true,
+      "genre": "Essay"
+    },
+    {
+      "id": "4",
+      "title": "From the Gaze",
+      "author": "Jung Sae Rang",
+      "price": 14.5,
+      "inStock": false,
+      "isFavorite": true,
+      "Novel": "Novel"
+    },
+    {
+      "id": "5",
+      "title": "The Extended Selfish Gene",
+      "author": "Richard Dawkins",
+      "price": 22,
+      "inStock": false,
+      "isFavorite": true,
+      "genre": "Popular Science"
+    },
+    {
+      "id": "6",
+      "title": "The Origin of Species",
+      "author": "Jeong Yujeong",
+      "price": 15,
+      "inStock": false,
+      "isFavorite": false,
+      "genre": "Novel"
+    },
+    {
+      "id": "7",
+      "title": "Between Calm and Passion",
+      "author": "Kaori Ekuni",
+      "price": 13,
+      "inStock": true,
+      "isFavorite": true,
+      "genre": "Novel"
+    },
+    {
+      "id": "8",
+      "title": "Thus Spoke Zarathustra",
+      "author": "Friedrich Nietzsche",
+      "price": 19,
+      "inStock": true,
+      "isFavorite": false,
+      "genre": "Novel"
+    },
+    {
+      "id": "9",
+      "title": "Exhalation",
+      "author": "Ted Chiang",
+      "price": 17,
+      "inStock": false,
+      "isFavorite": true,
+      "genre": "Short Stories"
+    },
+    {
+      "id": "10",
+      "title": "Mastering the Art of French Cooking",
+      "author": "Julia Child",
+      "price": 23,
+      "inStock": false,
+      "isFavorite": false,
+      "genre": "Cookbook"
+    },
+    {
+      "id": "e846",
+      "title": "dd",
+      "author": "dd",
+      "price": 11,
+      "genre": "dd",
+      "inStock": true,
+      "isFavorite": false
+    },
+    {
+      "title": "d",
+      "author": "d",
+      "genre": "dd",
+      "inStock": true,
+      "isFavorite": false,
+      "price": "13",
+      "id": "e480"
+    },
+    {
+      "id": "0b73",
+      "title": "dd",
+      "author": "dd",
+      "price": 123,
+      "genre": "d",
+      "inStock": true,
+      "isFavorite": false
+    },
+    {
+      "id": "f05f",
+      "title": "dd",
+      "author": "ad",
+      "price": 12,
+      "genre": "df",
+      "inStock": true,
+      "isFavorite": false
+    }
+  ]
+}
