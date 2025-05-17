@@ -1,20 +1,19 @@
 header {
-  height: 55px;
   background-color: darkorange;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 0 1rem;
   color: #333;
 }
 
 nav ul li {
   display: inline-block;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 a {
-  margin: 1rem;
+  margin: 0 1rem;
   text-decoration: none;
   color: white;
 }
@@ -24,6 +23,7 @@ a:hover {
 }
 
 .active {
-  color: purple;
-  border-bottom: 1px dashed white;
+  color: rgb(32, 24, 39);
+  border-bottom: 1px dashed rgb(3, 247, 44);
+  font-weight: 600;
 }

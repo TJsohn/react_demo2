@@ -14,7 +14,7 @@
       "author": "Han Kang",
       "genre": "Novel",
       "inStock": false,
-      "isFavorite": false,
+      "isFavorite": true,
       "price": 23,
       "id": "2"
     },
@@ -123,6 +123,24 @@
       "author": "ad",
       "price": 12,
       "genre": "df",
+      "inStock": true,
+      "isFavorite": false
+    },
+    {
+      "id": "9fe4",
+      "title": "babo",
+      "author": "asdf",
+      "price": 123,
+      "genre": "dfa",
+      "inStock": true,
+      "isFavorite": false
+    },
+    {
+      "id": "6e2a",
+      "title": "",
+      "author": "",
+      "price": null,
+      "genre": "",
       "inStock": true,
       "isFavorite": false
     }

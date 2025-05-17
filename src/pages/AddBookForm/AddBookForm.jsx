@@ -21,13 +21,14 @@ const AddBookForm = ({onAddBook}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const newBook = {...formData, price: parseFloat(formData.price), inStock: true, isFavorite: false
+        const newBook = {...formData, price: parseFloat(formData.price), inStock: true, isFavorite: false,
         };
+
         axios.post("http://localhost:3004/books", newBook)
         .then((res) => {
           onAddBook(res.data);
           navigate("/books");
-          setFormData({ title: "", author: "", price: "", genre: ""});
+          setFormData({ title: "", author: "", price: "", genre: "" });
         }).catch((err) => console.error('Failed to add book:', err));
     };
 

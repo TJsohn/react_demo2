@@ -1,81 +1,81 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import { createBrowserRouter, RouterProvider } from "react-router";
-import './App.css';
-import BookList from "./components/Books/BookList";
-import About from './pages/About';
-import AddBookForm from "./pages/AddBookForm";
-import AxiosExample from "./pages/AxiosExample";
-import Example from "./pages/Example";
-import NotFound from "./pages/NotFound";
+import { BrowserRouter, Routes, Route } from "react-router";
+
+import BookList from "./pages/Books/BookList";
+import About from './pages/About/About';
+import AddBookForm from "./pages/AddBookForm/AddBookForm";
 import Root from './pages/Root';
-import Todos from "./pages/Todos";
+import Todos from "./pages/Todos/Todos";
+import './App.css';
+import BookDetail from "./pages/Books/BookDetail";
 
 const App = () => {
   const [booksData, setBooksData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3004/books").then((res) => {
-      setBooksData(res.data).catch((err)=>console.error('Failed to fetch', err));
-    });
+    axios.get("http://localhost:3004/books")
+    .then((res) => setBooksData(res.data))
+      .catch((err)=> console.error('Failed to fetch', err));
   }, []);
 
   const addBookHandler = (newBook) => {
     setBooksData((prev) => [...prev, newBook]);
   };
   
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Root />,
-      children: [
-        {
-          path: "/about",
-          element: <About />,
-        },
-        {
-          path: "/books",
-          element: (<BookList booksData={booksData} setBooksData={setBooksData}/>),
-        },
-        {
-          path: "/add",
-          element: <AddBookForm onAddBook={addBookHandler} />,
-        },
-        {
-          path: "/example",
-          element: <Example />,
-        },
-        {
-          path: "axios",
-          element: <AxiosExample />,
-        },
-        {
-          path: "/todos",
-          element: <Todos />,
-        },
-        {
-          path: "/*",
-          element: <NotFound />,
-        },
-      ],
-    },
-  ]);
+  const handlePriceChange = (id, newPrice) => {
+    axios.patch(`http://localhost:3004/books/${id}`, {price:newPrice})
+    .then((res) => {
+      setBooksData((prev) => 
+      prev.map((book) => (book.id === id ? res.data : book))
+    );
+    })
+    .catch((err) => {
+      console.error("Failed to update price:", err);
+    });
+  };
 
-  return <RouterProvider router={router} />;
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path="/" element={<Root />}>
-    //       <Route path="about" element={<About />} />
-    //       <Route path="books" element={<BookList booksData={booksData} setBooksData={setBooksData} />} />
-    //       <Route path="add" element={<AddBookForm onAddBook={addBookHandler} />} />
-    //       <Route path="example" element={<Example />} />
-    //       <Route path="todos" element={<Todos />} />
-    //       <Route path="axiosexample" element={<AxiosExample />} />
-    //       <Route path="*" element={<NotFound />} />
-    //     </Route>      
-    //   </Routes>
-    // </BrowserRouter>
-  // );
+  const handleToggleField = (id, fieldName) => {
+    const book = booksData.find((b) => b.id === id);
+    if (!book) return;
+
+    const updatedField = { [fieldName]: !book[fieldName]};
+
+    axios
+    .patch(`http://localhost:3004/books/${id}`, updatedField)
+    .then((res) => {
+      setBooksData((prev) =>
+      prev.map((book) => (book.id === id ? res.data : book))
+    );
+    })
+    .catch((err) => console.error(`Failed to update ${fieldName}:`, err));
+  };
+
+  return (
+
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Root />}>
+      <Route index element={<About />} />
+      <Route
+        path="/books"
+        element={
+          <BookList
+          booksData={booksData}
+          onToggleChange={handleToggleField}
+          onPriceChange={handlePriceChange}
+          />
+        }
+        />
+        <Route path="/books/:id" element={<BookDetail />} />
+        <Route
+          path="/add"
+          element={<AddBookForm onAddBook={addBookHandler} />} />
+        <Route path="/todos" element={<Todos />} />
+          </Route></Routes></BrowserRouter>
+  );
 };
+
+  
 
 export default App;

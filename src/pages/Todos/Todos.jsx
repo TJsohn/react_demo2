@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import TodoCard from "../components/TodoCard/TodoCard";
+import TodoCard from "../../components/TodoCard/TodoCard";
 import axios from "axios";
+import LoaderSpinner from "../../components/LoaderSpinner/LoaderSpinner";
+import "./Todos.css";
 
 const Todos = () => {
     const [todos, setTodos] = useState([]);
@@ -15,15 +17,15 @@ const Todos = () => {
     }
 
     useEffect(() => { // for multiple fetching- promise. all
-        axios.get("https://jsonplaceholder.typicode.com/todos").then(res=> setTodos(res.data)).catch(console.error);
-    }, []);
+        axios.get("https://jsonplaceholder.typicode.com/todos").then((res)=> setTodos(res.data)).catch((err) => {console.error("Failed to fetch todos:", err);
+    });
+}, []);
 
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/users")
-        .then((res) => res.json())
-        .then(setUsers)
-        .catch(console.error)
-        .finally(() => setLoading(false));
+        axios.get("https://jsonplaceholder.typicode.com/users")
+        .then((res) => setUsers(res.data))
+        .catch((err)=>{console.error("Failed to fetch users:", err);
+        });
     }, []);
 
     useEffect(() => {
@@ -46,12 +48,17 @@ const Todos = () => {
         return matchStatus && matchUser;
     });
 
-    return loading ? (
-        <p>Loading...</p>
-    ) : (
-        <div>
-            <div>
-            <label>Filter by status:</label>
+    return (
+
+        <>
+            <div className="container">
+                <h1>Todos listing</h1>
+                {loading ? (
+                    <LoaderSpinner />
+                ) : (
+                    <div>
+                    <div className="todo-selections">
+                <label>Filter by status:</label>
             <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
                 <option value="all">All</option>
                 <option value="completed">Completed</option>
@@ -60,18 +67,23 @@ const Todos = () => {
             <label>Filter by user:</label>
             <select value={userFilter} onChange={(e) => setUserFilter(e.target.value)}>
                 <option value="all">All users</option>
-                {users.map((user) => (<option key={user.id} value={user.id}>{user.name}</option>))}           
+                {users.map((user) => (<option key={user.id} value={user.id}>{user.name}            
+                </option>
+                ))}           
             </select>
+                </div>
             <div className="todo-grid">
             {filteredData.map((todo) => {
                 const user = users.find((user) => user.id === todo.userId);
 
-                return <TodoCard key={todo.id} username={user?.name || "Unknown"} title={todo.title} completed={todo.completed} />;
+                return (<TodoCard key={todo.id} username={user?.name || "Unknown"} title={todo.title} completed={todo.completed} />
+            );
             })}
             </div>
             </div>
+        )}
         </div>
-      
+      </>
     );
 };
 
